@@ -1,5 +1,7 @@
 import { useState } from "react";
 import api from "../api/axios";
+import toast from "react-hot-toast";
+
 
 const ContactForm = ({ close }) => {
 
@@ -36,14 +38,14 @@ const ContactForm = ({ close }) => {
 
     if (!form.email) {
       newErrors.email = "Email is required";
-    } 
+    }
     else if (!/\S+@\S+\.\S+/.test(form.email)) {
       newErrors.email = "Invalid email format";
     }
 
     if (!form.phone) {
       newErrors.phone = "Phone number is required";
-    } 
+    }
     else if (!/^[0-9]{10}$/.test(form.phone)) {
       newErrors.phone = "Invalid Phone number";
     }
@@ -57,11 +59,15 @@ const ContactForm = ({ close }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validate()) return;
-
-    await api.post("/contacts", form);
-    close();
+    try {
+      await api.post("/contacts", form);
+      toast.success("Contact added ✅");
+      close();
+    } catch (err) {
+      toast.error("Failed to add contact");
+    }
   };
+
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-50">

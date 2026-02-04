@@ -1,6 +1,8 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+
 
 const Register = () => {
   const { register } = useContext(AuthContext);
@@ -14,9 +16,16 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await register(form);
-    navigate("/");
+
+    try {
+      await register(form);
+      toast.success("Account created successfully 🚀");
+      navigate("/");
+    } catch (err) {
+      toast.error("Registration failed");
+    }
   };
+
 
   return (
     <div className="bg-white min-h-screen flex flex-col">

@@ -3,9 +3,23 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 import { AuthProvider } from "./context/AuthContext";
+import { Toaster } from "react-hot-toast";
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <AuthProvider>
     <App />
+    <Toaster
+      position="top-right"
+      toastOptions={{
+        duration: 3000,
+        style: {
+          borderRadius: "12px",
+          padding: "14px 18px",
+          fontSize: "14px"
+        }
+      }}
+    />
+
   </AuthProvider>
 );

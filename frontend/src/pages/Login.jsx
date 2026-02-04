@@ -1,6 +1,8 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+
 
 const Login = () => {
   const { login } = useContext(AuthContext);
@@ -13,9 +15,16 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login(form);
-    navigate("/");
+
+    try {
+      await login(form);
+      toast.success("Logged in successfully 🎉");
+      navigate("/");
+    } catch (err) {
+      toast.error("Invalid email or password");
+    }
   };
+
 
   return (
     <div className="bg-white min-h-screen flex flex-col">
