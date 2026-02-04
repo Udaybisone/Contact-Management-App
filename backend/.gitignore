@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Build output (if applicable)
+dist/
+build/
+
+# Coverage
+coverage/
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Optional npm cache
+.npm/
+
+# MongoDB (if local data is stored)
+data/
+mongodb-data/
+
+# Temporary files
+tmp/
+temp/
+
+# ESLint cache
+.eslintcache
